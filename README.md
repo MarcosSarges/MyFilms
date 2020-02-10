@@ -15,3 +15,6 @@ O projeto pode ser executado com o Run padrão do Android Studio
 O app foi gerado a partir do terminal com o comando
 
 > ./gradlew assembleRelease
+
+
+*Não foi utilizada nenhuma biblioteca externa*.
