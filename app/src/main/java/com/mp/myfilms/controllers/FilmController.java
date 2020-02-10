@@ -4,15 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.mp.myfilms.DAO.FilmDao;
-import com.mp.myfilms.adapter.ListFilmsAdapter;
 import com.mp.myfilms.helpers.BitmapHelp;
 import com.mp.myfilms.models.Film;
 
@@ -32,7 +26,11 @@ public class FilmController {
     public FilmController(Context ctx, Film film) {
         this.ctx = ctx;
         this.film = film;
-
+        this.title = film.getTitle();
+        this.cast = film.getElenco();
+        this.athor = film.getAuthor();
+        this.date_laouch = film.getDateLaunch();
+        this.thumbnail = BitmapHelp.BytesToBitmap(film.getThumbnail());
     }
 
 
@@ -45,35 +43,27 @@ public class FilmController {
         this.thumbnail = thumbnail;
     }
 
-    public List<Film> getAllFilms(RecyclerView rcView) {
-        FilmDao filmDao = new FilmDao(ctx);
+    public List<Film> getAllFilms() {
+        FilmDao filmDao = new FilmDao(ctx.getApplicationContext());
         List<Film> listFilms = filmDao.getAllFilms();
-
-        //Configurar um adapter
-        ListFilmsAdapter adapter = new ListFilmsAdapter(listFilms);
-
-        //Configurar Recyclerview
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ctx);
-        rcView.setLayoutManager(layoutManager);
-        rcView.setHasFixedSize(true);
-        rcView.addItemDecoration(new DividerItemDecoration(ctx, LinearLayout.VERTICAL));
-        rcView.setAdapter(adapter);
         return listFilms;
     }
 
 
-    public void updateFilm() {
+    public boolean updateFilm() {
         if (validation()) {
-            FilmDao filmDao = new FilmDao(ctx);
+            FilmDao filmDao = new FilmDao(ctx.getApplicationContext());
             if (filmDao.update(film)) {
                 Toast.makeText(ctx, "Filme atualizado.", Toast.LENGTH_SHORT).show();
+                return true;
             } else {
                 Toast.makeText(ctx, "Filme não foi atualizado.", Toast.LENGTH_SHORT).show();
             }
         }
+        return false;
     }
 
-    public void saveFilm() {
+    public boolean saveFilm() {
         if (validation()) {
             FilmDao filmDao = new FilmDao(ctx);
 
@@ -84,13 +74,16 @@ public class FilmController {
                     this.date_laouch,
                     BitmapHelp.BitmapToArrayBytes(this.thumbnail)
             );
-
             if (filmDao.save(film)) {
                 Toast.makeText(ctx, "Filme salvo com sucesso", Toast.LENGTH_SHORT).show();
+                return true;
+
             } else {
                 Toast.makeText(ctx, "Filme não foi salvo", Toast.LENGTH_SHORT).show();
             }
         }
+        return false;
+
     }
 
     private boolean validation() {
@@ -117,36 +110,8 @@ public class FilmController {
         return true;
     }
 
-    public void delete(final Film film, final Context ctxAplication) {
+    public void delete(final Film film) {
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this.ctx);
-
-        //Configura título e mensagem
-        dialog.setTitle("Confirmar exclusão");
-        dialog.setMessage("Deseja excluir o filme: " + film.getTitle() + " ?");
-
-        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FilmDao filmDao = new FilmDao(ctxAplication);
-                if (filmDao.delete(film)) {
-                    Toast.makeText(ctxAplication,
-                            "Sucesso ao excluir tarefa!",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ctxAplication,
-                            "Erro ao excluir tarefa!",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
-        dialog.setNegativeButton("Não", null);
-
-        //Exibir dialog
-        dialog.create();
-        dialog.show();
     }
 
 

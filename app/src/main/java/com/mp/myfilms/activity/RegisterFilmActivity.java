@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,6 +67,7 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
         film = (Film) getIntent().getSerializableExtra("itemFilm");
 
         if (film != null) {
+            Log.d("tes", "onCreate: " + film.getId());
             edit_author.setText(film.getAuthor());
             edit_title.setText(film.getTitle());
             edit_cast.setText(film.getElenco());
@@ -97,13 +99,13 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
         if (item.getItemId() == R.id.button_save) {
 
             if (film != null) {
-                FilmController filmController = new FilmController(
-                        this,
-                        film
-                );
-                filmController.updateFilm();
-            } else {
+                FilmController filmController = new FilmController(this, film);
+                if (filmController.updateFilm()) {
+                    Intent intent = new Intent(getApplicationContext(), ListFilmsActivity.class);
+                    startActivity(intent);
+                }
 
+            } else {
                 FilmController filmController = new FilmController(
                         this,
                         edit_title.getText().toString(),
@@ -112,11 +114,14 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
                         txt_date_laouch.getText().toString(),
                         bitmap_thumbnail
                 );
-                filmController.saveFilm();
+
+                if (filmController.saveFilm()) {
+                    Intent intent = new Intent(getApplicationContext(), ListFilmsActivity.class);
+                    startActivity(intent);
+                }
             }
 
-            Intent intent = new Intent(getApplicationContext(), ListFilmsActivity.class);
-            startActivity(intent);
+
         }
 
         if (item.getItemId() == R.id.button_list) {

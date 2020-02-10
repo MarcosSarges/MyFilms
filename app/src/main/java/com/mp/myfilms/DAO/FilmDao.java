@@ -43,6 +43,7 @@ public class FilmDao {
 
     public boolean update(Film film) {
         ContentValues cv = new ContentValues();
+
         cv.put(DBHelp.COLUMN_TITLE, film.getTitle());
         cv.put(DBHelp.COLUMN_DATE, film.getDateLaunch());
         cv.put(DBHelp.COLUMN_AUTHOR, film.getAuthor());
@@ -51,8 +52,9 @@ public class FilmDao {
 
         try {
             String[] args = {film.getId().toString()};
-            white.update(DBHelp.TABLE_FILMS, cv, DBHelp.COLUMN_ID + "=?", args);
+            white.update(DBHelp.TABLE_FILMS, cv, "id=?", args);
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -63,6 +65,7 @@ public class FilmDao {
             String[] args = {film.getId().toString()};
             white.delete(DBHelp.TABLE_FILMS, DBHelp.COLUMN_ID + "=?", args);
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
         return true;
