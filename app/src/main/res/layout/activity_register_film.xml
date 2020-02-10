@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:theme="@style/RegisterActivity"
+        tools:context=".activity.RegisterFilmActivity">
+
+        <ImageView
+            android:id="@+id/img_thumbnail"
+            android:layout_width="373dp"
+            android:layout_height="263dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_image_24dp"
+            tools:srcCompat="@drawable/ic_image_24dp" />
+
+        <Button
+            android:id="@+id/btn_open_image_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimary"
+            android:onClick="openImagePicker"
+            android:text="Selecionar Imagem"
+            android:textColor="@android:color/white" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_title_film"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titulo do filme" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Autor" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Elenco">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_cast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text=""
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btn_open_date_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Abrir calendario"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

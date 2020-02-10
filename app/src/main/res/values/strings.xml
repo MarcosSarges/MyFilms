@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Myfilms</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_list_films">ListFilmsActivity</string>
+
+    <string name="title_app">Meus Filmes</string>
+    <string name="register_film">Registrar Filme</string>
+
 </resources>
