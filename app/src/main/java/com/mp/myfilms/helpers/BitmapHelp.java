@@ -10,9 +10,9 @@ public class BitmapHelp {
 
     public static byte[] BitmapToArrayBytes(Bitmap bp) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
         bp.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byte imgBytes[] = stream.toByteArray();
-
         return imgBytes;
     }
 

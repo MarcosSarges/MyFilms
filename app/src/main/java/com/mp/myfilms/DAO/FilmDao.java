@@ -51,8 +51,11 @@ public class FilmDao {
         cv.put(DBHelp.COLUMN_CAST, film.getElenco());
 
         try {
+
             String[] args = {film.getId().toString()};
-            white.update(DBHelp.TABLE_FILMS, cv, "id=?", args);
+            long a = white.update(DBHelp.TABLE_FILMS, cv, "id=?", args);
+
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -72,7 +72,10 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
             edit_title.setText(film.getTitle());
             edit_cast.setText(film.getElenco());
             txt_date_laouch.setText(film.getDateLaunch());
-            img_thumbnail.setImageBitmap(BitmapHelp.BytesToBitmap(film.getThumbnail()));
+
+            Bitmap bp = BitmapHelp.BytesToBitmap(film.getThumbnail());
+            bitmap_thumbnail = bp;
+            img_thumbnail.setImageBitmap(bp);
         }
 
 
@@ -99,7 +102,15 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
         if (item.getItemId() == R.id.button_save) {
 
             if (film != null) {
-                FilmController filmController = new FilmController(this, film);
+
+                film.setTitle(edit_title.getText().toString());
+                film.setElenco(edit_cast.getText().toString());
+                film.setAuthor(edit_author.getText().toString());
+                film.setDateLaunch(txt_date_laouch.getText().toString());
+                film.setThumbnail(BitmapHelp.BitmapToArrayBytes(bitmap_thumbnail));
+
+
+                FilmController filmController = new FilmController(getApplicationContext(), film);
                 if (filmController.updateFilm()) {
                     Intent intent = new Intent(getApplicationContext(), ListFilmsActivity.class);
                     startActivity(intent);
@@ -107,7 +118,7 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
 
             } else {
                 FilmController filmController = new FilmController(
-                        this,
+                        getApplicationContext(),
                         edit_title.getText().toString(),
                         edit_cast.getText().toString(),
                         edit_author.getText().toString(),
@@ -171,6 +182,7 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
 
             Bitmap img = (Bitmap) extras.get("data");
             bitmap_thumbnail = img;
+            film.setThumbnail(BitmapHelp.BitmapToArrayBytes(img));
             img_thumbnail.setImageBitmap(img);
         }
         super.onActivityResult(requestCode, resultCode, data);

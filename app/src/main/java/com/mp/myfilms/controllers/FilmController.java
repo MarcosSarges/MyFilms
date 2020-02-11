@@ -1,8 +1,6 @@
 package com.mp.myfilms.controllers;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.widget.Toast;
 
@@ -31,6 +29,7 @@ public class FilmController {
         this.athor = film.getAuthor();
         this.date_laouch = film.getDateLaunch();
         this.thumbnail = BitmapHelp.BytesToBitmap(film.getThumbnail());
+
     }
 
 
