@@ -182,7 +182,6 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
 
             Bitmap img = (Bitmap) extras.get("data");
             bitmap_thumbnail = img;
-            film.setThumbnail(BitmapHelp.BitmapToArrayBytes(img));
             img_thumbnail.setImageBitmap(img);
         }
         super.onActivityResult(requestCode, resultCode, data);
