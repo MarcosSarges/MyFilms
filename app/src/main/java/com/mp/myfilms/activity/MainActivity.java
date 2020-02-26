@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigationListActivity(View view) {
-        Intent intent = new Intent(MainActivity.this, RegisterFilmActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(MainActivity.this, RegisterFilmActivity.class));
     }
 
 }

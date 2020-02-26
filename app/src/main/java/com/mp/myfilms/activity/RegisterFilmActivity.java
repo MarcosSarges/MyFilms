@@ -79,13 +79,11 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
         }
 
 
-        btn_open_date_picker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
-            }
-        });
+        btn_open_date_picker.setOnClickListener((View view) -> {
+                    DialogFragment datePicker = new DatePickerFragment();
+                    datePicker.show(getSupportFragmentManager(), "date picker");
+                }
+        );
 
 
     }
@@ -160,9 +158,7 @@ public class RegisterFilmActivity extends AppCompatActivity implements DatePicke
     }
 
     private void openCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_CODE);
+        startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), IMAGE_PICK_CODE);
     }
 
     @Override

@@ -33,36 +33,51 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:boxBackgroundColor="#fff"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_title_film"
+                style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Titulo do filme" />
+                android:hint="Titulo do filme"
+                android:maxLines="1"
+                android:scrollbarStyle="insideInset" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Autor" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Elenco">
+            app:boxBackgroundColor="#fff"
+            app:boxBackgroundMode="filled">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_author"
+                style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Autor"
+                android:maxLines="1"
+                android:scrollbarStyle="insideInset" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Elenco"
+            app:boxBackgroundColor="#fff"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_cast"
+                style="@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:scrollbarStyle="insideInset" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
